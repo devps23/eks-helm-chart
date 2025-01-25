@@ -1,0 +1,13 @@
+metadata:
+  name: frontend
+initContainers:
+  enabled: false
+containers:
+  name: frontend
+selector:
+  appName: frontend
+  type: LoadBalancer
+ports:
+  port: 80
+  targetPort: 80
+dockerImageVersion: 2.3

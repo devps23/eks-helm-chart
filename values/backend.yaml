@@ -1,0 +1,14 @@
+metadata:
+  name: backend
+  appName: backend
+initContainers:
+  enabled: true
+containers:
+  name: backend
+selector:
+  appName: backend
+  type: ClusterIP
+ports:
+  port: 80
+  targetPort: 8080
+dockerImageVersion: 1.7
