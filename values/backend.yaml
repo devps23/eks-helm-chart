@@ -1,6 +1,7 @@
 metadata:
   name: backend
   appName: backend
+  project_name: expense
 initContainers:
   enabled: true
 containers:

@@ -1,5 +1,7 @@
 metadata:
   name: frontend
+  appName: frontend
+  project_name: expense
 initContainers:
   enabled: false
 containers:

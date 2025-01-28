@@ -29,7 +29,7 @@ spec:
         - name: vault-secret
           mountPath: /data
     - name: schema
-      image: pavanidevops78/kubernetes:2.2
+      image: public.ecr.aws/u4j6q5s8/backend-schema:1.1
       volumeMounts:
         - name: vault-secret
           mountPath: /data
@@ -37,12 +37,14 @@ spec:
 
   containers:
     - name: {{ .Values.containers.name }}
-      image: pavanidevops78/kubernetes:{{ .Values.dockerImageVersion }}
+      image: public.ecr.aws/u4j6q5s8/{{ .Values.metadata.project_name }}-{{ .Values.metadata.appName }}:1.0
       {{- if .Values.initContainers.enabled }}
       volumeMounts:
         - name: vault-secret
           mountPath: /data
       {{- end }}
 
+
+#public.ecr.aws/u4j6q5s8/expense-backend:1.0
 
 
