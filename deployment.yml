@@ -1,25 +1,21 @@
 apiVersion: apps/v1
-kind: ReplicaSet
+kind: Deployment
 metadata:
-  name: frontend
+  name: nginx-deployment
   labels:
-    app: expense
-    tier: frontend
+    app: nginx
 spec:
-  # modify replicas according to your case
   replicas: 3
   selector:
     matchLabels:
-      tier: frontend
+      app: nginx
   template:
     metadata:
       labels:
-        tier: frontend
+        app: nginx
     spec:
       containers:
         - name: nginx
           image: nginx:1.5
-
-
-
-
+          ports:
+            - containerPort: 80
