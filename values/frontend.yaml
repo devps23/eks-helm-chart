@@ -1,7 +1,7 @@
 metadata:
-  name: frontend
-  appName: frontend
+  component: frontend
   project_name: expense
+  appVersion: 2.0.0
 initContainers:
   enabled: false
 containers:

@@ -5,6 +5,7 @@ metadata:
   labels:
     appName: {{ .Values.metadata.appName }}
     projectName: {{ .Chart.Name }}
+    appVersion: {{ .Values.metadata.appVersion }}
 spec:
   {{- if .Values.initContainers.enabled }}
   volumes:
