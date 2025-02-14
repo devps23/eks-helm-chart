@@ -1,0 +1,21 @@
+ {{- if .Values.ingress.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+name: {{ .Values.metadata.component }}
+annotations:
+nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+ingressClassName: nginx-example
+rules:
+  - hosts: {{ .Values.ingress.hostName }}
+    http:
+    paths:
+      - path: /
+        pathType: Prefix
+        backend:
+        service:
+        name: {{ .Values.metadata.component }}
+        port:
+        number: 80
+{{- end }}
