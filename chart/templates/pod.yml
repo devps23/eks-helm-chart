@@ -3,7 +3,7 @@ kind: Pod
 metadata:
   name: {{ .Values.metadata.component }}
   labels:
-    appName: {{ .Values.metadata.component }}
+    appName: {{ .Values.metadata.project_name }}
     projectName: {{ .Chart.Name }}
     appVersion: {{ .Values.metadata.appVersion }}
 spec:
