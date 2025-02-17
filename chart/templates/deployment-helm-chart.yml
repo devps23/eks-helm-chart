@@ -1,59 +1,59 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: {{ .Values.metadata.component }}
-  labels:
-    appName: {{ .Values.metadata.component }}
-    projectName: {{ .Chart.Name }}
-    appVersion: {{ .Values.metadata.appVersion }}
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      appName: {{ .Values.metadata.component }}
-      projectName: {{ .Chart.Name }}
-      appVersion: {{ .Values.metadata.appVersion }}
-  template:
-    metadata:
-      labels:
-        appName: {{ .Values.metadata.component }}
-        projectName: {{ .Chart.Name }}
-        appVersion: {{ .Values.metadata.appVersion }}
-    spec:
-      {{ - if .Values.initContainers.enabled }}
-      volumes:
-        - name: vault-secret
-          emptyDir: { }
-      initContainers:
-        - name: get-secrets
-          image: docker.io/pavanidevops78/kubernetes:1.6
-          env:
-            - name: VAULT_ADDR
-              value: https://vault-internal.pdevops72.online:8200
-            - name: VAULT_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: vault-token
-                  key: token
-            - name: SECRET_NAME
-              value: common/vault
-            - name: VAULT_SKIP_VERIFY
-              value: "TRUE"
-          volumeMounts:
-            - name: vault-secret
-              mountPath: /data
-        - name: schema
-          image: public.ecr.aws/u4j6q5s8/backend-schema:1.2
-          volumeMounts:
-            - name: vault-secret
-              mountPath: /data
-      {{ - end }}
-
-      containers:
-        - name: {{ .Values.containers.name }}
-          image: public.ecr.aws/u4j6q5s8/{{ .Values.metadata.project_name }}-{{ .Values.metadata.component }}:1.0
-          {{ - if .Values.initContainers.enabled }}
-          volumeMounts:
-            - name: vault-secret
-              mountPath: /data
-          {{ - end }}
+#apiVersion: apps/v1
+#kind: Deployment
+#metadata:
+#  name: {{ .Values.metadata.component }}
+#  labels:
+#    appName: {{ .Values.metadata.component }}
+#    projectName: {{ .Chart.Name }}
+#    appVersion: {{ .Values.metadata.appVersion }}
+#spec:
+#  replicas: 3
+#  selector:
+#    matchLabels:
+#      appName: {{ .Values.metadata.component }}
+#      projectName: {{ .Chart.Name }}
+#      appVersion: {{ .Values.metadata.appVersion }}
+#  template:
+#    metadata:
+#      labels:
+#        appName: {{ .Values.metadata.component }}
+#        projectName: {{ .Chart.Name }}
+#        appVersion: {{ .Values.metadata.appVersion }}
+#    spec:
+#      {{ - if .Values.initContainers.enabled }}
+#      volumes:
+#        - name: vault-secret
+#          emptyDir: { }
+#      initContainers:
+#        - name: get-secrets
+#          image: docker.io/pavanidevops78/kubernetes:1.6
+#          env:
+#            - name: VAULT_ADDR
+#              value: https://vault-internal.pdevops72.online:8200
+#            - name: VAULT_TOKEN
+#              valueFrom:
+#                secretKeyRef:
+#                  name: vault-token
+#                  key: token
+#            - name: SECRET_NAME
+#              value: common/vault
+#            - name: VAULT_SKIP_VERIFY
+#              value: "TRUE"
+#          volumeMounts:
+#            - name: vault-secret
+#              mountPath: /data
+#        - name: schema
+#          image: public.ecr.aws/u4j6q5s8/backend-schema:1.2
+#          volumeMounts:
+#            - name: vault-secret
+#              mountPath: /data
+#      {{ - end }}
+#
+#      containers:
+#        - name: {{ .Values.containers.name }}
+#          image: public.ecr.aws/u4j6q5s8/{{ .Values.metadata.project_name }}-{{ .Values.metadata.component }}:1.0
+#          {{ - if .Values.initContainers.enabled }}
+#          volumeMounts:
+#            - name: vault-secret
+#              mountPath: /data
+#          {{ - end }}
