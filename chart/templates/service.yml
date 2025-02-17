@@ -12,3 +12,8 @@ spec:
       port: {{ .Values.ports.port }}
       targetPort: {{ .Values.ports.targetPort }}
   type: {{ .Values.selector.type }}
+
+
+
+#  ExpenseApp123----DB_PASS
+#expense----DB_USER
