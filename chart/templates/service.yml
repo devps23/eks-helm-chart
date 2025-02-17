@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.metadata.project_name }}
+  name: {{ .Values.metadata.component }}
 spec:
   selector:
     appName: {{ .Values.selector.appName }}
