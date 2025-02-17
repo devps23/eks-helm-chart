@@ -13,7 +13,7 @@ spec:
      emptyDir: { }
   initContainers:
     - name: get-secrets
-      image: docker.io/pavanidevops78/kubernetes:1.6
+      image: public.ecr.aws/u4j6q5s8/kubernetes-vault-init-container:1.1
       env:
         - name: VAULT_ADDR
           value: https://vault-internal.pdevops72.online:8200
@@ -38,7 +38,7 @@ spec:
 
   containers:
     - name: {{ .Values.containers.name }}
-      image: public.ecr.aws/u4j6q5s8/{{ .Values.metadata.project_name }}-{{ .Values.metadata.component }}:1.0
+      image: public.ecr.aws/u4j6q5s8/{{ .Values.metadata.project_name }}-{{ .Values.metadata.component }}:1.1
       {{- if .Values.initContainers.enabled }}
       volumeMounts:
         - name: vault-secret
@@ -47,5 +47,6 @@ spec:
 
 
 #public.ecr.aws/u4j6q5s8/expense-backend:1.0
+#public.ecr.aws/u4j6q5s8/expense-backend:1.1
 
 
