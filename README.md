@@ -85,8 +85,6 @@ Provides the ARN of an SSL certificate in AWS Certificate Manager (ACM) to handl
 service.beta.kubernetes.io/aws-load-balancer-ssl-ports: 443:
 Specifies that SSL termination should occur on port 443. This means HTTPS traffic is terminated at the load balancer and forwarded to the backend using HTTP.
 
-
-
 * kubectl get ingress
 * kubectl get pods
 * kubectl get svc
