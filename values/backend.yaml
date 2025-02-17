@@ -13,6 +13,5 @@ ports:
   port: 80
   targetPort: 8080
 dockerImageVersion: 1.7
-ingress:
-  enabled: false
+
 

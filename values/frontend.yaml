@@ -14,6 +14,3 @@ ports:
   targetPort: 80
 dockerImageVersion: 2.3
 
-ingress:
-  enabled: true
-  hostName: frontend-dev.pdevops72.online
