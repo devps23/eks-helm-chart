@@ -95,7 +95,8 @@ any request comes and send to the load balancer
 
 ingress:
 --------
-
+kubectl get ingress -A
+kubectl get ingress -A --watch (if there is any changes )
 
 
 
