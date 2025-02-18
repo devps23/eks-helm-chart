@@ -1,7 +1,7 @@
 metadata:
   component: frontend
   project_name: expense
-  appVersion: "1.0"
+  appVersion: v1
 initContainers:
   enabled: false
 containers:
@@ -12,6 +12,6 @@ selector:
 ports:
   port: 80
   targetPort: 80
-dockerImage: "1.0"
+dockerImage: 1.0
 
 
