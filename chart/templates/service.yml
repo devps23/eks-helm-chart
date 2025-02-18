@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.metadata.component }}
 spec:
   selector:
-    appName: {{ .Values.selector.project_name }}
+    appName: {{ .Values.selector.appName }}
     projectName: {{ .Chart.Name }}
   ports:
     - name: http
