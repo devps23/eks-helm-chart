@@ -9,8 +9,8 @@ metadata:
 spec:
   {{- if .Values.initContainers.enabled }}
   volumes:
-   - name: vault-secret
-     emptyDir: { }
+    - name: vault-secret
+      emptyDir: {}
   initContainers:
     - name: get-secrets
       image: public.ecr.aws/u4j6q5s8/kubernetes-vault-init-container:1.2
@@ -34,8 +34,7 @@ spec:
       volumeMounts:
         - name: vault-secret
           mountPath: /data
- {{- end }}
-
+  {{- end }}
   containers:
     - name: {{ .Values.containers.name }}
       image: public.ecr.aws/u4j6q5s8/{{ .Values.metadata.project_name }}-{{ .Values.metadata.component }}:1.0
@@ -44,9 +43,3 @@ spec:
         - name: vault-secret
           mountPath: /data
       {{- end }}
-
-
-#public.ecr.aws/u4j6q5s8/expense-backend:1.0
-#public.ecr.aws/u4j6q5s8/expense-backend:1.1
-
-#public.ecr.aws/u4j6q5s8/expense-backend:1.4

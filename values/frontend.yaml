@@ -12,5 +12,6 @@ selector:
 ports:
   port: 80
   targetPort: 80
+dockerImage: 1.0
 
 
