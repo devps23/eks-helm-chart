@@ -3,17 +3,17 @@ kind: Pod
 metadata:
   name: {{ .Values.metadata.component }}
   labels:
-    appName: {{ .Values.metadata.project_name }}
+    appName: {{ .Values.metadata.component }}
     projectName: {{ .Chart.Name }}
     appVersion: {{ .Values.metadata.appVersion }}
 spec:
   {{- if .Values.initContainers.enabled }}
   volumes:
     - name: vault-secret
-      emptyDir: {}
+      emptyDir: { }
   initContainers:
     - name: get-secrets
-      image: public.ecr.aws/u4j6q5s8/kubernetes-vault-init-container:1.2
+      image: public.ecr.aws/u4j6q5s8/kubernetes-vault-init-container:1.1
       env:
         - name: VAULT_ADDR
           value: https://vault-internal.pdevops72.online:8200
@@ -30,16 +30,22 @@ spec:
         - name: vault-secret
           mountPath: /data
     - name: schema
-      image: public.ecr.aws/u4j6q5s8/backend-schema:1.4
+      image: public.ecr.aws/u4j6q5s8/backend-schema:1.2
       volumeMounts:
         - name: vault-secret
           mountPath: /data
   {{- end }}
+
   containers:
     - name: {{ .Values.containers.name }}
-      image: public.ecr.aws/u4j6q5s8/expense-frontend:1.0
+      image: public.ecr.aws/u4j6q5s8/{{ .Values.metadata.project_name }}-{{ .Values.metadata.component }}:1.1
       {{- if .Values.initContainers.enabled }}
       volumeMounts:
         - name: vault-secret
           mountPath: /data
       {{- end }}
+
+
+#public.ecr.aws/u4j6q5s8/expense-backend:1.0
+#public.ecr.aws/u4j6q5s8/expense-backend:1.1
+
