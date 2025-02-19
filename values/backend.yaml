@@ -1,7 +1,6 @@
 metadata:
   component: backend
   project: expense
-  appVersion: v1
 initContainers:
   enabled: true
 containers:

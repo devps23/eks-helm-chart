@@ -3,9 +3,9 @@ kind: Pod
 metadata:
   name: {{ .Values.metadata.component }}
   labels:
-    appName: {{ .Values.metadata.component }}
+    appName: {{ .Values.selector.appName }}
     projectName: {{ .Chart.Name }}
-    appVersion: {{ .Values.metadata.appVersion }}
+
 spec:
   {{- if .Values.initContainers.enabled }}
   volumes:
