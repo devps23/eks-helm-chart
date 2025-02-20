@@ -38,7 +38,7 @@ spec:
 
   containers:
     - name: {{ .Values.containers.name }}
-      image: public.ecr.aws/u4j6q5s8/{{ .Values.metadata.project }}-{{ .Values.metadata.component }}:1.0
+      image: public.ecr.aws/u4j6q5s8/{{ .Values.metadata.project }}-{{ .Values.metadata.component }}:1.4
       {{- if .Values.initContainers.enabled }}
       volumeMounts:
         - name: vault-secret
