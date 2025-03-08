@@ -17,3 +17,7 @@ if [ "$2" == "jobs" ]; then
     done
 fi
 
+
+
+argocd app create frontend --repo https://github.com/devps23/expense-helm-argocd.git --path chart --dest-server https://kubernetes.default.svc --dest-namespace default.svc --grpc-web --values values/frontend.yaml
+
